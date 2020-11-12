@@ -167,7 +167,7 @@ class RegisterUser(View):
         user.is_staff =True
         user.save()
         msg ='You are registered successfully...!'
-        return render(request,'login.html',{"msg":msg})
+        return render(request,'register.html',{"msg":msg})
 
 
 class SignUp(View):
