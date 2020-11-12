@@ -6,7 +6,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(('email address'), unique=True)
     firstname = models.CharField('firstname', max_length=50)
     lastname = models.CharField('lastname', max_length=50)
-    dob = models.DateField('dob')
+    dob = models.DateField('dob',null=True)
     date_joined = models.DateTimeField(('date joined'), auto_now_add=True)
     address= models.CharField('address',max_length=50)
     company = models.CharField('company', max_length=50)
@@ -14,7 +14,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     stripe_user_id = models.CharField(max_length=255, blank=True)
     stripe_access_token = models.CharField(max_length=255, blank=True)
-    subscription = models.ForeignKey("Subscription",on_delete=models.CASCADE)
+    subscription = models.ForeignKey("Subscription",on_delete=models.CASCADE,null=True)
     is_subscription_active = models.BooleanField(default=False)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

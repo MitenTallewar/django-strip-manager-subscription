@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="94c78c49-f874-4d7e-b9c3-a577ac02f501" name="Default Changelist" comment="" />
+    <list default="true" id="94c78c49-f874-4d7e-b9c3-a577ac02f501" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/subscription.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managerapp/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/managerapp/migrations/0002_customuser_is_subscription_active.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/managerapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/managerapp/models.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,7 +39,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="C:/Miten/Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -79,10 +85,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="137" y="22" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1605098339832" />
-    <state x="350" y="0" key="CommitChangelistDialog2" timestamp="1605190876449">
+    <state x="350" y="0" key="CommitChangelistDialog2" timestamp="1605202735163">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="350" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1605190876449" />
+    <state x="350" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1605202735163" />
     <state x="462" y="109" key="FileChooserDialogImpl" timestamp="1605196187144">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -99,9 +105,9 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="275" y="100" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1605190902865" />
-    <state x="391" y="191" key="com.intellij.ide.util.TipDialog" timestamp="1605188346879">
+    <state x="391" y="191" key="com.intellij.ide.util.TipDialog" timestamp="1605197910959">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="391" y="191" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1605188346879" />
+    <state x="391" y="191" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1605197910959" />
   </component>
 </project>
