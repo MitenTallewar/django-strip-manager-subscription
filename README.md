@@ -3,8 +3,8 @@
 ## Install dependencies with following command
      pip install -r requirements.txt
 ## Migrate (please check database section in settings.py)
-   manage.py makemigrations
-   manage.py migrate
+   manage.py makemigrations\
+   manage.py migrate\
    manage.py loaddata subscription.json
 ## Create testing account on stripe and add publishable keys and secret key in settings.py 
   STRIPE_PUBLISHABLE_KEY = '< your stripe publishable key >'\
