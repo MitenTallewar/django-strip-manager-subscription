@@ -7,6 +7,9 @@
   <hr><br>
   <form method="post" action="{% url 'register' %}">
     {% csrf_token %}
+    {% if msg %}
+      {{msg}}. Please click <a href="{% url 'login' %}">here</a> to login
+    {% endif %}
     <div class="field">
         <label class="label">Email</label>
         <div class="control">
