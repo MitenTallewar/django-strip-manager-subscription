@@ -1,0 +1,89 @@
+{% extends '_base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+  <h1 class="title is-size-1">Register</h1>
+  <hr><br>
+  <form method="post" action="{% url 'register' %}">
+    {% csrf_token %}
+    <div class="field">
+        <label class="label">Email</label>
+        <div class="control">
+          <input id="emailField" class="input" name="email" type="email" placeholder="e.g. abc@gmail.com" />
+          <div class="warning"></div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Password</label>
+        <div class="control">
+          <input class="input" name="password" type="password" required>
+        </div>
+      </div>
+    <div class="field">
+        <label class="label">First Name</label>
+        <div class="control">
+          <input class="input" name="firstname" type="text" pattern="[A-Za-z]+"
+        title="First name should only contain alphabets. e.g. john or Alex">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Last Name</label>
+        <div class="control">
+          <input class="input" name="lastname" type="text"  pattern="[A-Za-z]+"
+        title="Last name should only contain alphabets. e.g. john or Alex">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Date of Birth</label>
+        <div class="control">
+          <input class="input" name="dob" type="date" min="1970-01-01" max="2000-12-31" required/>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Address</label>
+        <div class="control">
+          <input class="input" name="address" type="text" required/>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Company</label>
+        <div class="control">
+          <input class="input" name="company" type="text" pattern="[A-Za-z]+\s[A-Za-z']+"
+        title="Company name should be like this. e.g. abc infotech or abc solutions">
+        </div>
+      </div>
+      <div class="field">
+      <p class="control">
+        <button type="submit" class="button is-success">Submit</button>
+      </p>
+    </div>
+  </form>
+{% endblock %}
+{% block script %}
+  <script>var generated_csrf_token = '{{ csrf_token }}';</script>
+  <script>
+    $(() => {
+       $('#emailField').blur(function(e) {
+        $('.warning').html('')
+        $.ajax({
+          url: "{% url 'isEmailExist' %}",
+          method: 'POST',
+          data: JSON.stringify({
+            email: $('#emailField').val()
+          }),
+          headers: {'X-CSRFToken': generated_csrf_token}
+        })
+        .done((res) => {
+
+          if (res.msg == true)
+            $('.warning').html('Email already exist')
+        })
+        .fail((err) => {
+          alert('email check api failed..'+err)
+        });
+      });
+    });
+  </script>
+{% endblock %}
+

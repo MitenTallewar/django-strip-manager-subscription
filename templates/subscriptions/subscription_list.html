@@ -1,0 +1,56 @@
+{% extends '_base.html' %}
+
+{% block title %}Subscriptions{% endblock %}
+
+{% block content %}
+  <h1 class="title is-size-1">Subscriptions</h1>
+  <hr><br>
+  {% if subscription_list %}
+    {% for subscription in subscription_list %}
+      <div>
+      <h4 class="is-size-4" width="auto">{{ subscription.title }}</h4>
+      <p style="display:inline-block;">{{ subscription.description }}</p>
+      {% if user.subscription.id == subscription.id %}
+        {% if user.is_subscription_active %}
+          <p style="color:green;"><b>Active</b></p>
+        {% else %}
+          <p style="color:green;"><b>InActive</b></p>
+          Click <a class="resume-link">here</a> to resume
+        {% endif %}
+      {% else %}
+        <p><a href="{% url 'subscription_detail' subscription.slug %}" class="button is-info">Purchase</a></p>
+        <br><br><br>
+      {% endif %}
+      </div>
+      <br/>
+    {% endfor %}
+  {% else %}
+    <p>No Subscriptions!</p>
+  {% endif %}
+
+{% endblock %}
+{% block script %}
+  <script>var generated_csrf_token = '{{ csrf_token }}';</script>
+  <script>
+    $(() => {
+      $('.resume-link').click(function(e) {
+        $.ajax({
+          url: "{% url 'subscription_resume' %}",
+          method: 'PATCH',
+          data: JSON.stringify({
+            user:"{{ user.id }}"
+          }),
+          headers: {'X-CSRFToken': generated_csrf_token}
+        })
+        .done((res) => {
+          window.location.href="{% url 'home' %}"
+        })
+        .fail((err) => {
+          const message = 'There was a problem in unsubscribing. Please try again..'
+          $('div > .notification.is-danger').html(message);
+          $('.notification-danger-wrapper').css('display', 'block');
+        });
+      });
+    });
+  </script>
+{% endblock %}

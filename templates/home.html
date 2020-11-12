@@ -1,0 +1,78 @@
+{% extends '_base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <h1 class="title is-size-1">Manager Stripe Connect Portal</h1>
+  <hr><br>
+  {% if user.is_authenticated %}
+    <p class="is-size-6">Welcome, {{ user.email }}!</p>
+    <br>
+
+    {% if user.is_seller and not user.seller.stripe_user_id %}
+      <a href="{% url 'authorize' %}" class="button is-info">Connect Stripe Account</a>
+    {% endif %}
+    {% if user.subscription %}
+          {% if user.is_subscription_active %}
+              <p align="center">You have subscribed to <b>{{ user.subscription.title }}.</b></p>
+              <p align="center">
+                You can cancel your subscription <a class="cancel-link">here</a>
+              </p>
+          {% else %}
+              <p align="center">You have inactive subscription to <b>{{ user.subscription.title }}.</b></p>
+              <p align="center">
+                Please click <a class="resume-link">here</a> to resume your subscription.
+              </p>
+          {% endif %}
+    {% else %}
+      <p>You are not subscribed to any subscription</p>
+      <a href="{% url 'subscription_list' %}" class="button is-primary">Purchase Subscription</a>
+    {% endif %}
+  {% else %}
+    <p class="is-size-6">Please <a href="{% url 'login' %}">login</a> to get subscription</p>
+  {% endif %}
+{% endblock %}
+
+{% block script %}
+  <script>var generated_csrf_token = '{{ csrf_token }}';</script>
+  <script>
+    $(() => {
+       $('.cancel-link').click(function(e) {
+        $.ajax({
+          url: "{% url 'subscription_cancel' %}",
+          method: 'PATCH',
+          data: JSON.stringify({
+            user:"{{ user.id }}"
+          }),
+          headers: {'X-CSRFToken': generated_csrf_token}
+        })
+        .done((res) => {
+          window.location.href="{% url 'home' %}"
+        })
+        .fail((err) => {
+          const message = 'There was a problem in unsubscribing. Please try again..'
+          $('div > .notification.is-danger').html(message);
+          $('.notification-danger-wrapper').css('display', 'block');
+        });
+      });
+      $('.resume-link').click(function(e) {
+        $.ajax({
+          url: "{% url 'subscription_resume' %}",
+          method: 'PATCH',
+          data: JSON.stringify({
+            user:"{{ user.id }}"
+          }),
+          headers: {'X-CSRFToken': generated_csrf_token}
+        })
+        .done((res) => {
+          window.location.href="{% url 'home' %}"
+        })
+        .fail((err) => {
+          const message = 'There was a problem in unsubscribing. Please try again..'
+          $('div > .notification.is-danger').html(message);
+          $('.notification-danger-wrapper').css('display', 'block');
+        });
+      });
+    });
+  </script>
+{% endblock %}
